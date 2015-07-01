@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="TrainingDB.exe.manifest" size="4791">
+    <dependentAssembly dependencyType="install" codebase="TrainingDB.exe.manifest" size="4792">
       <assemblyIdentity name="TrainingDB.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vuPwljecZyNkVomGKaA8iEWFhtwOeTby4l79ZyKKkZ8=</dsig:DigestValue>
+        <dsig:DigestValue>yAdHt9jYBhYfZbU/Jx/h9kLttCHdvH9qmd6o5qUe+G0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

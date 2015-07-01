@@ -38,7 +38,7 @@ Module SQLModule
         Try
             con.Open()
             cmd.ExecuteNonQuery()
-            
+
         Catch ex As Exception
             MsgBox(ex.Message)
 
@@ -53,10 +53,6 @@ Module SQLModule
 
     Public Sub CreateDataSet(SQLCode As String, BindSource As BindingSource, ctl As Object)
 
-
-        CurrentDataSet = Nothing
-        CurrentDataAdapter = Nothing
-        CurrentBindingSource = Nothing
         Dim con As New OleDb.OleDbConnection(Connect)
 
         Try
@@ -79,17 +75,23 @@ Module SQLModule
 
     End Sub
 
-    Public Sub UpdateBackend(WhichForm As Form)
+    Public Sub UpdateBackend()
 
         Dim con As New OleDb.OleDbConnection(Connect)
         Dim cb As New OleDb.OleDbCommandBuilder(CurrentDataAdapter)
 
+        If CurrentDataSet.HasChanges() = False Then
+            MsgBox("Errors present or no changes to upload")
+            Exit Sub
+        End If
+
+
         Try
-            WhichForm.Validate()
             CurrentBindingSource.EndEdit()
             con.Open()
             CurrentDataAdapter.Update(CurrentDataSet)
             MsgBox("Table Updated")
+            CurrentDataSet.AcceptChanges()
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
@@ -99,4 +101,37 @@ Module SQLModule
         End Try
 
     End Sub
+
+    Public Function UnloadData() As Boolean
+
+        Dim Cancel As Boolean = False
+
+        If IsNothing(CurrentDataSet) Then
+            UnloadData = False
+            Exit Function
+        End If
+
+
+        Try
+            If CurrentDataSet.HasChanges() Then
+
+                If (MsgBox("Changes to data will be lost unless saved first. Do you wish to discard changes?", vbYesNo) = vbNo) Then Cancel = True
+
+            End If
+
+            If Cancel = False Then
+                CurrentDataSet = Nothing
+                CurrentDataAdapter = Nothing
+                CurrentBindingSource = Nothing
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            UnloadData = Cancel
+        End Try
+
+
+
+    End Function
 End Module
