@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TrainingDB.exe" size="606184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TrainingDB.exe" size="611816">
       <assemblyIdentity name="TrainingDB" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bCybJi0kTgn23X935YClia6DwpUYQi63vQ6U0dEwHZc=</dsig:DigestValue>
+        <dsig:DigestValue>8f0PDYj47N0ovqhnSm/c5k0QJZ8cCsaZ4HAqaRKeysY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

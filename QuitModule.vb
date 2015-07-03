@@ -6,7 +6,6 @@
 
         If Login = False Or CloseAnyway = True Then
             Application.Exit()
-            End
         End If
 
     End Sub
