@@ -10,6 +10,7 @@ Module SQLModule
     Private Const TablePath As String = "M:\VOLUNTEER SCREENING SERVICES\DavidBurnside\Training\Backend.accdb"
     Private Const PWord As String = "Crypto*Dave02"
     Private Const Connect As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & TablePath & ";Jet OLEDB:Database Password=" & PWord
+    Public Const SolutionName As String = "Training Database"
 
     Public Function QueryTest(SQLCode As String) As Long
         'Execute a SQL Command and return the number of records
