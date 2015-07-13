@@ -1,4 +1,5 @@
 ﻿'Imports needed for OLEDB connections (Access backend)
+Imports System.IO
 Imports System.Data
 Imports System.Data.OleDb.OleDbConnection
 Module SQLModule
@@ -7,33 +8,33 @@ Module SQLModule
     Public CurrentDataAdapter As OleDb.OleDbDataAdapter = Nothing
     Public CurrentBindingSource As BindingSource = Nothing
     'Connection information privately accessible 
-    Private Const TablePath As String = "M:\VOLUNTEER SCREENING SERVICES\DavidBurnside\Training\Backend.accdb"
+    Private Const TablePath As String = "M:\VOLUNTEER SCREENING SERVICES\DavidBurnside\\Training\Backend.accdb"
     Private Const PWord As String = "Crypto*Dave02"
     Private Const Connect As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & TablePath & ";Jet OLEDB:Database Password=" & PWord
-    Public Const SolutionName As String = "Training Database"
+    Public Const SolutionName As String = "Training Tool"
 
     Public Function QueryTest(SQLCode As String) As Long
         'Execute a SQL Command and return the number of records
 
         Dim Counter As Long
-        Dim rs As New ADODB.Recordset
+        Dim dt As New DataTable
+        Dim da As New OleDb.OleDbDataAdapter(SQLCode, Connect)
 
         Try
             'Connect
-            rs.Open(SQLCode, Connect, ADODB.CursorTypeEnum.adOpenStatic)
+            da.Fill(dt)
             'Assign
-            Counter = rs.RecordCount
+            Counter = dt.Rows.Count
 
         Catch ex As Exception
             MsgBox(ex.Message)
 
         Finally
             'Close Off & Clean up
-            rs.Close()
-            rs = Nothing
+            dt = Nothing
+            da = Nothing
 
         End Try
-
         QueryTest = Counter
 
     End Function
@@ -55,10 +56,16 @@ Module SQLModule
             MsgBox(ex.Message)
 
         Finally
+
             'Close Off & Clean up
-            con.Close()
-            con = Nothing
-            cmd = Nothing
+            Try
+                con.Close()
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                con = Nothing
+                cmd = Nothing
+            End Try
 
         End Try
 
@@ -89,9 +96,15 @@ Module SQLModule
             MsgBox(ex.Message)
 
         Finally
+
             'Close off & Clean up
-            con.Close()
-            con = Nothing
+            Try
+                con.Close()
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                con = Nothing
+            End Try
 
         End Try
 
@@ -128,9 +141,18 @@ Module SQLModule
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
+
             'Close off & clean up
-            con.Close()
-            con = Nothing
+            Try
+                con.Close()
+                'Requery
+                Call Refresher(ctl)
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                con = Nothing
+            End Try
+
         End Try
 
     End Sub
@@ -181,30 +203,6 @@ Module SQLModule
 
         Select Case ctl.name
 
-            Case "DataGridView3"
-
-                'Custom Command Builder...OLEDB Parameters must be added in the order they are used
-
-
-                'New Connection
-                Dim con As New OleDb.OleDbConnection(Connect)
-
-                'SET THE Commands, with Parameters (OLDB Parameters must be added in the order they are used in the statement)
-                CurrentDataAdapter.UpdateCommand = New OleDb.OleDbCommand("UPDATE TrainingCourse SET TypeID=@P1, CourseDate=@P2 WHERE ID=@P3", con)
-                CurrentDataAdapter.InsertCommand = New OleDb.OleDbCommand("INSERT INTO TrainingCourse (TypeID, CourseDate) VALUES (@P1, @P2)", con)
-
-                'Add parameters with the source columns in the dataset
-                With CurrentDataAdapter.UpdateCommand.Parameters
-                    .Add("@P1", OleDb.OleDbType.Double).SourceColumn = "TypeID"
-                    .Add("@P2", OleDb.OleDbType.Date).SourceColumn = "CourseDate"
-                    .Add("@P3", OleDb.OleDbType.Double).SourceColumn = "ID"
-                End With
-                With CurrentDataAdapter.InsertCommand.Parameters
-                    .Add("@P1", OleDb.OleDbType.Double).SourceColumn = "TypeID"
-                    .Add("@P2", OleDb.OleDbType.Date).SourceColumn = "CourseDate"
-                End With
-
-
             Case Else
 
                 'If not specified - Select commands with one table can auto generate INSERT, UPDATE commands
@@ -233,11 +231,59 @@ Module SQLModule
             MsgBox(ex.Message)
             TempDataSet = Nothing
         Finally
+
             'Close off & Clean up
-            con.Close()
-            con = Nothing
+            Try
+                con.Close()
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                con = Nothing
+            End Try
 
         End Try
 
     End Function
+
+    Public Function CreateCSVString(SQLCode As String) As String
+
+        Dim da As New OleDb.OleDbDataAdapter(SQLCode, Connect)
+        Dim dt As New DataTable
+        Dim Output As String = vbNullString
+
+        Try 
+            da.Fill(dt)
+
+            For Each row In dt.Rows
+
+                If Not IsNothing(row.item(0)) And Not IsDBNull(row.item(0)) Then
+                    Output = Output & row.Item(0) & ","
+                End If
+
+            Next
+
+            Output = Left(Output, Len(Output) - 1)
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+        Finally
+            CreateCSVString = Output
+            dt = Nothing
+            da = Nothing
+        End Try
+
+    End Function
+
+    Public Sub Refresher(DataItem As Object)
+
+        Try
+            Call CreateDataSet(CurrentDataAdapter.SelectCommand.CommandText, CurrentBindingSource, DataItem)
+            DataItem.parent.refresh()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
 End Module

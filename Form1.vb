@@ -1,23 +1,30 @@
 ﻿Public Class Form1
 
+    Private colRemovedTabs As New Collection()
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.WindowState = FormWindowState.Maximized
 
         Call LockCheck()
 
         Call LoginCheck()
 
-        Me.Label2.Text = "Developed by David Burnside" & vbNewLine & vbTab & "Version: " & My.Application.Info.Version.ToString()
+        Try
+            Me.Label2.Text = "Training Tool " & vbNewLine & "Developed by David Burnside" & vbNewLine & "Version: " & System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
+        Catch ex As Exception
+            Me.Label2.Text = "Training Tool " & vbNewLine & "Developed by David Burnside"
+        End Try
 
         Me.Text = SolutionName
 
-    End Sub
+        colRemovedTabs.Add(Me.TabPage5, Me.TabPage5.Name)
+        TabControl1.Controls.Remove(Me.TabPage5)
 
-    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
-        If UnloadData() = True Then e.Cancel = True
-        Call Quitter(True)
 
     End Sub
+
+
 
     Private Sub DataGridView2_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView2.DataError
 
@@ -26,28 +33,10 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        Call UpdateBackend(Me.DataGridView2)
-
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
-        Call UpdateBackend(Me.DataGridView1)
-
-    End Sub
-
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
 
         e.Cancel = False
         Call ErrorHandler(sender, e)
-
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-
-        Call UpdateBackend(Me.DataGridView3)
 
     End Sub
 
@@ -70,17 +59,20 @@
                 ctl = Me.DataGridView1
                 SQLCode = "SELECT ID, FName, SName FROM STAFF ORDER BY SName ASC"
                 CreateDataSet(SQLCode, Bind, ctl)
+                TabControl1.Controls.Remove(Me.TabPage5)
 
             Case 2
                 ctl = Me.DataGridView2
                 SQLCode = "SELECT ID, TrainingName, ValidLength FROM TrainType ORDER BY TrainingName ASC"
                 CreateDataSet(SQLCode, Bind, ctl)
+                TabControl1.Controls.Remove(Me.TabPage5)
 
 
             Case 3
                 ctl = Me.DataGridView3
                 SQLCode = "SELECT ID, TypeID, CourseDate FROM TrainingCourse  ORDER BY CourseDate ASC"
                 CreateDataSet(SQLCode, Bind, ctl)
+                TabControl1.Controls.Remove(Me.TabPage5)
 
         End Select
 
@@ -135,8 +127,47 @@
                 ctl.Columns.Add(cmb)
                 ctl.columns(2).headertext = "Course Date"
                 ctl.columns(3).headertext = "Training Name"
-
+                Dim cmb2 As New DataGridViewImageColumn()
+                cmb2.Image = My.Resources.social_networking_users_icon
+                cmb2.ImageLayout = DataGridViewImageCellLayout.Zoom
+                cmb2.HeaderText = "Attendees"
+                ctl.columns.add(cmb2)
         End Select
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+        Call UpdateBackend(Me.DataGridView1)
+
+    End Sub
+
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Call UpdateBackend(Me.DataGridView3)
+    End Sub
+
+    Private Sub DataGridView3_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView3.CellClick
+        If Not sender.columns(e.ColumnIndex).HeaderText = "Attendees" Then Exit Sub
+        If IsNothing(sender.rows(e.RowIndex).cells("ID").value) _
+        Or IsDBNull(sender.rows(e.RowIndex).cells("ID").value) _
+        Or sender.CurrentRow.IsNewRow Then Exit Sub
+
+        If Not IsNothing(CurrentBindingSource) Then CurrentBindingSource.EndEdit()
+
+        If UnloadData() = False Then
+            If QueryTest("SELECT ID FROM TrainingCourse WHERE ID=" & sender.rows(e.RowIndex).cells("ID").value) = 0 Then
+                MsgBox("No Record found")
+            Else
+                TabControl1.Controls.Add(colRemovedTabs("TabPage5"))
+                TabControl1.SelectedTab = TabPage5
+                Call ResetDataGrid()
+
+            End If
+        End If
+
+
+
 
     End Sub
 End Class

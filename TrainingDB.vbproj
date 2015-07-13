@@ -83,6 +83,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hvivo_logo1_8dY_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -197,6 +200,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\social_networking_users_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hVIVO_screensaver_two.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hvivo_logo1_8dY_icon.ico" />
+    <None Include="Resources\SAVER.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
