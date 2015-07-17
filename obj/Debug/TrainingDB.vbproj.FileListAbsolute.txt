@@ -16,3 +16,7 @@ C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TrainingDB.application
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.TrustInfo.xml
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.exe.manifest
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.application
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.pdb
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.vbprojResolveAssemblyReference.cache
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.xml
