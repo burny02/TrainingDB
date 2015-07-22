@@ -13,9 +13,9 @@
         Central.LoginCheck()
 
         Try
-            Me.Label2.Text = "Training Tool " & vbNewLine & "Developed by David Burnside" & vbNewLine & "Version: " & System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
+            Me.Label2.Text = SolutionName & vbNewLine & "Developed by David Burnside" & vbNewLine & "Version: " & System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
         Catch
-            Me.Label2.Text = "Training Tool " & vbNewLine & "Developed by David Burnside"
+            Me.Label2.Text = SolutionName & vbNewLine & "Developed by David Burnside"
         End Try
 
         Me.Text = SolutionName
@@ -214,5 +214,18 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Call Saver(DataGridView2)
+    End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If Central.UnloadData() = True Then e.Cancel = True
+        Call Central.Quitter(True)
+    End Sub
+
+    Private Sub DataGridView3_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView3.CellEnter
+        Call Central.SingleClick(sender, e)
+    End Sub
+
+    Private Sub DataGridView4_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView4.CellEnter
+        Call Central.SingleClick(sender, e)
     End Sub
 End Class
