@@ -27,7 +27,7 @@
     <ProductName>Training Tool</ProductName>
     <PublisherName>David Burnside</PublisherName>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -115,6 +115,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonModule.vb" />
+    <Compile Include="ComboModule.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="hvivo_logo1_8dY_icon.ico" />
+    <None Include="Resources\training.png" />
     <None Include="Resources\SAVER.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
