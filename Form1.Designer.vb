@@ -27,29 +27,30 @@ Partial Class Form1
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.SplitContainer4 = New System.Windows.Forms.SplitContainer()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SplitContainer5 = New System.Windows.Forms.SplitContainer()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.DataGridView4 = New System.Windows.Forms.DataGridView()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.Panel1.SuspendLayout()
@@ -78,7 +79,6 @@ Partial Class Form1
         Me.SplitContainer5.Panel2.SuspendLayout()
         Me.SplitContainer5.SuspendLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -123,6 +123,18 @@ Partial Class Form1
         Me.Label2.TabIndex = 9
         Me.Label2.Text = "Version"
         '
+        'PictureBox4
+        '
+        Me.PictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.PictureBox4.BackgroundImage = Global.TrainingDB.My.Resources.Resources.hVIVO_screensaver_two
+        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PictureBox4.Location = New System.Drawing.Point(8, 6)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(339, 309)
+        Me.PictureBox4.TabIndex = 10
+        Me.PictureBox4.TabStop = False
+        '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.SplitContainer2)
@@ -150,6 +162,20 @@ Partial Class Form1
         Me.SplitContainer2.Size = New System.Drawing.Size(358, 327)
         Me.SplitContainer2.SplitterDistance = 25
         Me.SplitContainer2.TabIndex = 1
+        '
+        'Button4
+        '
+        Me.Button4.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button4.Location = New System.Drawing.Point(0, 0)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(130, 25)
+        Me.Button4.TabIndex = 9
+        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
@@ -195,6 +221,20 @@ Partial Class Form1
         Me.SplitContainer1.SplitterDistance = 25
         Me.SplitContainer1.TabIndex = 4
         '
+        'Button2
+        '
+        Me.Button2.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button2.Location = New System.Drawing.Point(0, 0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(130, 25)
+        Me.Button2.TabIndex = 10
+        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'DataGridView2
         '
         Me.DataGridView2.AllowUserToDeleteRows = False
@@ -239,6 +279,20 @@ Partial Class Form1
         Me.SplitContainer3.SplitterDistance = 25
         Me.SplitContainer3.TabIndex = 0
         '
+        'Button5
+        '
+        Me.Button5.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
+        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button5.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button5.Location = New System.Drawing.Point(0, 0)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(130, 25)
+        Me.Button5.TabIndex = 10
+        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'DataGridView3
         '
         Me.DataGridView3.AllowUserToDeleteRows = False
@@ -282,6 +336,20 @@ Partial Class Form1
         Me.SplitContainer4.Size = New System.Drawing.Size(352, 321)
         Me.SplitContainer4.SplitterDistance = 25
         Me.SplitContainer4.TabIndex = 0
+        '
+        'Button1
+        '
+        Me.Button1.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(0, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(130, 25)
+        Me.Button1.TabIndex = 11
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'SplitContainer5
         '
@@ -341,74 +409,6 @@ Partial Class Form1
         Me.DataGridView4.Size = New System.Drawing.Size(352, 233)
         Me.DataGridView4.TabIndex = 5
         '
-        'PictureBox4
-        '
-        Me.PictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBox4.BackgroundImage = Global.TrainingDB.My.Resources.Resources.hVIVO_screensaver_two
-        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PictureBox4.Location = New System.Drawing.Point(8, 6)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(339, 309)
-        Me.PictureBox4.TabIndex = 10
-        Me.PictureBox4.TabStop = False
-        '
-        'Button4
-        '
-        Me.Button4.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.Location = New System.Drawing.Point(0, 0)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(130, 25)
-        Me.Button4.TabIndex = 9
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button2.Location = New System.Drawing.Point(0, 0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(130, 25)
-        Me.Button2.TabIndex = 10
-        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button5
-        '
-        Me.Button5.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
-        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button5.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button5.Location = New System.Drawing.Point(0, 0)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(130, 25)
-        Me.Button5.TabIndex = 10
-        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.BackgroundImage = Global.TrainingDB.My.Resources.Resources.SAVER
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(0, 0)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(130, 25)
-        Me.Button1.TabIndex = 11
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -423,6 +423,7 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.SplitContainer2.Panel1.ResumeLayout(False)
         Me.SplitContainer2.Panel2.ResumeLayout(False)
@@ -452,7 +453,6 @@ Partial Class Form1
         CType(Me.SplitContainer5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer5.ResumeLayout(False)
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

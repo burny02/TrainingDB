@@ -20,3 +20,4 @@ C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.dll
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.pdb
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.vbprojResolveAssemblyReference.cache
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.xml
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.StaffTraining.resources

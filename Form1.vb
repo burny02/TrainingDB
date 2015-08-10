@@ -162,4 +162,29 @@
     End Sub
 
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+        If e.ColumnIndex <> sender.columns("ViewTraining").index Then Exit Sub
+        If IsDBNull(sender.item("ID", e.RowIndex).value) Then Exit Sub
+
+        Dim Dt As DataTable = OverClass.TempDataTable("SELECT CourseDate, TrainingName, DateAdd('M',iif(isnull(ValidLength),120,ValidLength),CourseDate) As Expiry " & _
+                                                      "FROM ((CourseAttendees a INNER JOIN TrainingCourse b " & _
+                                                        "ON a.CourseID=b.ID) INNER JOIN TrainType c ON b.TypeID=c.ID) " & _
+                                                        "WHERE StaffID=" & sender.item("ID", e.RowIndex).value & _
+                                                        " ORDER BY CourseDate ASC")
+        If Dt.Rows.Count = 0 Then
+            MsgBox("No training found")
+        Else
+            Dim Viewer As New StaffTraining
+            Viewer.DataGridView1.DataSource = Dt
+            Viewer.DataGridView1.AllowUserToAddRows = False
+            Viewer.DataGridView1.ReadOnly = True
+            Viewer.DataGridView1.Columns("CourseDate").DefaultCellStyle.Format = "dd-MMM-yyyy"
+            Viewer.DataGridView1.Columns("Expiry").DefaultCellStyle.Format = "dd-MMM-yyyy"
+            Viewer.Text = sender.item("FName", e.RowIndex).value & " " & sender.item("SName", e.RowIndex).value
+            Viewer.Visible = True
+        End If
+        
+
+    End Sub
 End Class
