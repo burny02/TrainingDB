@@ -20,6 +20,7 @@
         TabControl1.Controls.Remove(Me.TabPage5)
 
 
+        Me.ReportViewer1.RefreshReport()
     End Sub
 
     Private Sub TabControl1_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles TabControl1.Selecting

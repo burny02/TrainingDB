@@ -48,6 +48,8 @@ Partial Class Form1
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.DataGridView4 = New System.Windows.Forms.DataGridView()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +82,7 @@ Partial Class Form1
         Me.SplitContainer5.SuspendLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage6.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -92,6 +95,7 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Cursor = System.Windows.Forms.Cursors.Default
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -409,6 +413,25 @@ Partial Class Form1
         Me.DataGridView4.Size = New System.Drawing.Size(352, 233)
         Me.DataGridView4.TabIndex = 5
         '
+        'TabPage6
+        '
+        Me.TabPage6.Controls.Add(Me.ReportViewer1)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage6.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage6.TabIndex = 5
+        Me.TabPage6.Text = "Expired Training"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'ReportViewer1
+        '
+        Me.ReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ReportViewer1.Location = New System.Drawing.Point(3, 3)
+        Me.ReportViewer1.Name = "ReportViewer1"
+        Me.ReportViewer1.Size = New System.Drawing.Size(352, 321)
+        Me.ReportViewer1.TabIndex = 0
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -454,6 +477,7 @@ Partial Class Form1
         Me.SplitContainer5.ResumeLayout(False)
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage6.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -481,5 +505,7 @@ Partial Class Form1
     Friend WithEvents DataGridView4 As System.Windows.Forms.DataGridView
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents TabPage6 As System.Windows.Forms.TabPage
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
 
 End Class
