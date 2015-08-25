@@ -1,6 +1,5 @@
 ﻿Module ComboModule
 
-
     Public Sub GenericCombo(sender As Object, e As EventArgs)
 
         If sender.SelectedValue.ToString = vbNullString Then Exit Sub
@@ -63,6 +62,5 @@
         'If Not IsNothing(Grid) Then Call Form1.Specifics(Grid)
 
     End Sub
-
 
 End Module

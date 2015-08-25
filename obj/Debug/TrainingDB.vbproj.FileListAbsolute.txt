@@ -21,3 +21,5 @@ C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.pdb
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.vbprojResolveAssemblyReference.cache
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.xml
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.StaffTraining.resources
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\RdlCompile.cache
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\RdlCompile.compiled

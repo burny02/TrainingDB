@@ -23,6 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -47,9 +51,9 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.DataGridView4 = New System.Windows.Forms.DataGridView()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +85,8 @@ Partial Class Form1
         Me.SplitContainer5.Panel2.SuspendLayout()
         Me.SplitContainer5.SuspendLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -100,7 +104,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(366, 353)
+        Me.TabControl1.Size = New System.Drawing.Size(366, 347)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -111,7 +115,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage1.Size = New System.Drawing.Size(358, 321)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Menu"
         '
@@ -121,7 +125,7 @@ Partial Class Form1
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("Modern No. 20", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(36, 244)
+        Me.Label2.Location = New System.Drawing.Point(36, 241)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(48, 15)
         Me.Label2.TabIndex = 9
@@ -133,7 +137,7 @@ Partial Class Form1
         Me.PictureBox4.BackgroundImage = Global.TrainingDB.My.Resources.Resources.hVIVO_screensaver_two
         Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PictureBox4.Location = New System.Drawing.Point(8, 6)
+        Me.PictureBox4.Location = New System.Drawing.Point(8, 3)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(339, 309)
         Me.PictureBox4.TabIndex = 10
@@ -144,7 +148,7 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.SplitContainer2)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage3.Size = New System.Drawing.Size(358, 321)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Staff"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -163,7 +167,7 @@ Partial Class Form1
         'SplitContainer2.Panel2
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.DataGridView1)
-        Me.SplitContainer2.Size = New System.Drawing.Size(358, 327)
+        Me.SplitContainer2.Size = New System.Drawing.Size(358, 321)
         Me.SplitContainer2.SplitterDistance = 25
         Me.SplitContainer2.TabIndex = 1
         '
@@ -184,6 +188,8 @@ Partial Class Form1
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -193,7 +199,7 @@ Partial Class Form1
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(358, 298)
+        Me.DataGridView1.Size = New System.Drawing.Size(358, 292)
         Me.DataGridView1.TabIndex = 0
         '
         'TabPage2
@@ -202,7 +208,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage2.Size = New System.Drawing.Size(358, 321)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Types"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -221,7 +227,7 @@ Partial Class Form1
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(352, 321)
+        Me.SplitContainer1.Size = New System.Drawing.Size(352, 315)
         Me.SplitContainer1.SplitterDistance = 25
         Me.SplitContainer1.TabIndex = 4
         '
@@ -242,6 +248,8 @@ Partial Class Form1
         'DataGridView2
         '
         Me.DataGridView2.AllowUserToDeleteRows = False
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro
+        Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -251,7 +259,7 @@ Partial Class Form1
         Me.DataGridView2.RowHeadersVisible = False
         Me.DataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(352, 292)
+        Me.DataGridView2.Size = New System.Drawing.Size(352, 286)
         Me.DataGridView2.TabIndex = 2
         '
         'TabPage4
@@ -260,7 +268,7 @@ Partial Class Form1
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage4.Size = New System.Drawing.Size(358, 321)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Course"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -279,7 +287,7 @@ Partial Class Form1
         'SplitContainer3.Panel2
         '
         Me.SplitContainer3.Panel2.Controls.Add(Me.DataGridView3)
-        Me.SplitContainer3.Size = New System.Drawing.Size(352, 321)
+        Me.SplitContainer3.Size = New System.Drawing.Size(352, 315)
         Me.SplitContainer3.SplitterDistance = 25
         Me.SplitContainer3.TabIndex = 0
         '
@@ -300,6 +308,8 @@ Partial Class Form1
         'DataGridView3
         '
         Me.DataGridView3.AllowUserToDeleteRows = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro
+        Me.DataGridView3.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView3.Dock = System.Windows.Forms.DockStyle.Fill
@@ -309,7 +319,7 @@ Partial Class Form1
         Me.DataGridView3.RowHeadersVisible = False
         Me.DataGridView3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView3.Size = New System.Drawing.Size(352, 292)
+        Me.DataGridView3.Size = New System.Drawing.Size(352, 286)
         Me.DataGridView3.TabIndex = 4
         '
         'TabPage5
@@ -318,7 +328,7 @@ Partial Class Form1
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage5.Size = New System.Drawing.Size(358, 321)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Attendees"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -337,7 +347,7 @@ Partial Class Form1
         'SplitContainer4.Panel2
         '
         Me.SplitContainer4.Panel2.Controls.Add(Me.SplitContainer5)
-        Me.SplitContainer4.Size = New System.Drawing.Size(352, 321)
+        Me.SplitContainer4.Size = New System.Drawing.Size(352, 315)
         Me.SplitContainer4.SplitterDistance = 25
         Me.SplitContainer4.TabIndex = 0
         '
@@ -372,7 +382,7 @@ Partial Class Form1
         'SplitContainer5.Panel2
         '
         Me.SplitContainer5.Panel2.Controls.Add(Me.DataGridView4)
-        Me.SplitContainer5.Size = New System.Drawing.Size(352, 292)
+        Me.SplitContainer5.Size = New System.Drawing.Size(352, 286)
         Me.SplitContainer5.SplitterDistance = 55
         Me.SplitContainer5.TabIndex = 0
         '
@@ -401,6 +411,8 @@ Partial Class Form1
         'DataGridView4
         '
         Me.DataGridView4.AllowUserToDeleteRows = False
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro
+        Me.DataGridView4.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView4.Dock = System.Windows.Forms.DockStyle.Fill
@@ -410,7 +422,7 @@ Partial Class Form1
         Me.DataGridView4.RowHeadersVisible = False
         Me.DataGridView4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView4.Size = New System.Drawing.Size(352, 233)
+        Me.DataGridView4.Size = New System.Drawing.Size(352, 227)
         Me.DataGridView4.TabIndex = 5
         '
         'TabPage6
@@ -419,7 +431,7 @@ Partial Class Form1
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(358, 327)
+        Me.TabPage6.Size = New System.Drawing.Size(358, 321)
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "Expired Training"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -429,7 +441,7 @@ Partial Class Form1
         Me.ReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ReportViewer1.Location = New System.Drawing.Point(3, 3)
         Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.Size = New System.Drawing.Size(352, 321)
+        Me.ReportViewer1.Size = New System.Drawing.Size(352, 315)
         Me.ReportViewer1.TabIndex = 0
         '
         'Form1
@@ -437,7 +449,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
-        Me.ClientSize = New System.Drawing.Size(366, 353)
+        Me.ClientSize = New System.Drawing.Size(366, 347)
         Me.Controls.Add(Me.TabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
@@ -476,8 +488,8 @@ Partial Class Form1
         CType(Me.SplitContainer5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer5.ResumeLayout(False)
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

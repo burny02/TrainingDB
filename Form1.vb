@@ -1,4 +1,6 @@
-﻿Public Class Form1
+﻿Imports Microsoft.Reporting.WinForms
+
+Public Class Form1
 
     Private colRemovedTabs As New Collection()
 
@@ -56,6 +58,14 @@
                 SQLCode = "SELECT ID, TypeID, CourseDate FROM TrainingCourse  ORDER BY CourseDate ASC"
                 OverClass.CreateDataSet(SQLCode, Bind, ctl)
                 TabControl1.Controls.Remove(Me.TabPage5)
+
+            Case 4
+                Me.ReportViewer1.Visible = True
+                Me.ReportViewer1.LocalReport.DataSources.Clear()
+                Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "TrainingDB.ExpiredTraining.rdlc"
+                Me.ReportViewer1.LocalReport.DataSources.Add(New ReportDataSource("ReportDataSet", _
+                                                          OverClass.TempDataTable("SELECT * FROM ExpiredTraining")))
+                Me.ReportViewer1.RefreshReport()
 
         End Select
 
@@ -122,7 +132,7 @@
             Dim CourseID As Double
             CourseID = sender.rows(e.RowIndex).cells("ID").value
 
-            If OverClass.QueryTest("SELECT ID FROM TrainingCourse WHERE ID=" & CourseID) = 0 Then
+            If OverClass.SELECTCount("SELECT ID FROM TrainingCourse WHERE ID=" & CourseID) = 0 Then
                 MsgBox("No Record found")
             Else
                 Dim SQLCode As String
@@ -162,7 +172,6 @@
 
     End Sub
 
-
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
         If e.ColumnIndex <> sender.columns("ViewTraining").index Then Exit Sub
@@ -185,7 +194,7 @@
             Viewer.Text = sender.item("FName", e.RowIndex).value & " " & sender.item("SName", e.RowIndex).value
             Viewer.Visible = True
         End If
-        
+
 
     End Sub
 End Class
