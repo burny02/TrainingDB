@@ -42,7 +42,7 @@ Public Class Form1
 
             Case 1
                 ctl = Me.DataGridView1
-                SQLCode = "SELECT ID, FName, SName FROM STAFF ORDER BY SName ASC"
+                SQLCode = "SELECT ID, FName, SName, Role, Site FROM STAFF ORDER BY FName ASC"
                 OverClass.CreateDataSet(SQLCode, Bind, ctl)
                 TabControl1.Controls.Remove(Me.TabPage5)
 
@@ -91,6 +91,12 @@ Public Class Form1
                 cmb.ImageLayout = DataGridViewImageCellLayout.Zoom
                 ctl.columns.add(cmb)
                 cmb.Name = "ViewTraining"
+                Dim cmb2 As New DataGridViewImageColumn
+                cmb2.HeaderText = "Hide Staff Member"
+                cmb2.Image = My.Resources.training
+                cmb2.ImageLayout = DataGridViewImageCellLayout.Zoom
+                ctl.columns.add(cmb2)
+                cmb2.Name = "HideStaff"
 
             Case "DataGridView2"
                 ctl.Columns(0).Visible = False
@@ -174,27 +180,35 @@ Public Class Form1
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
-        If e.ColumnIndex <> sender.columns("ViewTraining").index Then Exit Sub
+
         If IsDBNull(sender.item("ID", e.RowIndex).value) Then Exit Sub
 
-        Dim Dt As DataTable = OverClass.TempDataTable("SELECT CourseDate, TrainingName, DateAdd('M',iif(isnull(ValidLength),120,ValidLength),CourseDate) As Expiry " & _
-                                                      "FROM ((CourseAttendees a INNER JOIN TrainingCourse b " & _
-                                                        "ON a.CourseID=b.ID) INNER JOIN TrainType c ON b.TypeID=c.ID) " & _
-                                                        "WHERE StaffID=" & sender.item("ID", e.RowIndex).value & _
-                                                        " ORDER BY CourseDate ASC")
-        If Dt.Rows.Count = 0 Then
-            MsgBox("No training found")
-        Else
-            Dim Viewer As New StaffTraining
-            Viewer.DataGridView1.DataSource = Dt
-            Viewer.DataGridView1.AllowUserToAddRows = False
-            Viewer.DataGridView1.ReadOnly = True
-            Viewer.DataGridView1.Columns("CourseDate").DefaultCellStyle.Format = "dd-MMM-yyyy"
-            Viewer.DataGridView1.Columns("Expiry").DefaultCellStyle.Format = "dd-MMM-yyyy"
-            Viewer.Text = sender.item("FName", e.RowIndex).value & " " & sender.item("SName", e.RowIndex).value
-            Viewer.Visible = True
+
+        If e.ColumnIndex = sender.columns("ViewTraining").index Then
+
+            Dim Dt As DataTable = OverClass.TempDataTable("SELECT CourseDate, TrainingName, DateAdd('M',iif(isnull(ValidLength),120,ValidLength),CourseDate) As Expiry " & _
+                                                          "FROM ((CourseAttendees a INNER JOIN TrainingCourse b " & _
+                                                            "ON a.CourseID=b.ID) INNER JOIN TrainType c ON b.TypeID=c.ID) " & _
+                                                            "WHERE StaffID=" & sender.item("ID", e.RowIndex).value & _
+                                                            " ORDER BY CourseDate ASC")
+            If Dt.Rows.Count = 0 Then
+                MsgBox("No training found")
+            Else
+                Dim Viewer As New StaffTraining
+                Viewer.DataGridView1.DataSource = Dt
+                Viewer.DataGridView1.AllowUserToAddRows = False
+                Viewer.DataGridView1.ReadOnly = True
+                Viewer.DataGridView1.Columns("CourseDate").DefaultCellStyle.Format = "dd-MMM-yyyy"
+                Viewer.DataGridView1.Columns("Expiry").DefaultCellStyle.Format = "dd-MMM-yyyy"
+                Viewer.Text = sender.item("FName", e.RowIndex).value & " " & sender.item("SName", e.RowIndex).value
+                Viewer.Visible = True
+            End If
+
         End If
 
+        If e.ColumnIndex = sender.columns("HideStaff").index Then
 
+
+        End If
     End Sub
 End Class
