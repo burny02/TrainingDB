@@ -42,7 +42,7 @@ Public Class Form1
 
             Case 1
                 ctl = Me.DataGridView1
-                SQLCode = "SELECT ID, FName, SName, Role, Site FROM STAFF ORDER BY FName ASC"
+                SQLCode = "SELECT ID, FName, SName, Role, Site, Hidden, Contract FROM STAFF WHERE Hidden = False ORDER BY FName ASC"
                 OverClass.CreateDataSet(SQLCode, Bind, ctl)
                 TabControl1.Controls.Remove(Me.TabPage5)
 
@@ -60,13 +60,13 @@ Public Class Form1
                 TabControl1.Controls.Remove(Me.TabPage5)
 
             Case 4
-                Me.ReportViewer1.Visible = True
-                Me.ReportViewer1.LocalReport.DataSources.Clear()
-                Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "TrainingDB.ExpiredTraining.rdlc"
-                Me.ReportViewer1.LocalReport.DataSources.Add(New ReportDataSource("ReportDataSet", _
-                                                          OverClass.TempDataTable("SELECT * FROM ExpiredTraining")))
-                Me.ReportViewer1.RefreshReport()
 
+                Call Specifics(Me.ReportViewer1)
+                StartCombo(Me.ComboBox1)
+                StartCombo(Me.ComboBox2)
+                StartCombo(Me.ComboBox3)
+                StartCombo(Me.ComboBox4)
+                
         End Select
 
 
@@ -74,7 +74,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Specifics(ctl As Object)
+    Public Sub Specifics(ctl As Object)
 
         If IsNothing(ctl) Then Exit Sub
 
@@ -82,8 +82,24 @@ Public Class Form1
 
             Case "DataGridView1"
                 ctl.Columns(0).Visible = False
+                ctl.columns("Hidden").visible = False
+                ctl.columns("Site").visible = False
+                ctl.columns("Contract").visible = False
                 ctl.columns(1).headertext = "Name"
                 ctl.columns(2).headertext = "Surname"
+                Dim cmb3 As New DataGridViewComboBoxColumn()
+                cmb3.DataPropertyName = "Site"
+                cmb3.Items.Add("MAN")
+                cmb3.Items.Add("WHC")
+                cmb3.Items.Add("QUA")
+                cmb3.HeaderText = "Site"
+                ctl.Columns.Add(cmb3)
+                Dim cmb4 As New DataGridViewComboBoxColumn()
+                cmb4.DataPropertyName = "Contract"
+                cmb4.Items.Add("Permanent")
+                cmb4.Items.Add("Bank")
+                cmb4.HeaderText = "Contract Type"
+                ctl.Columns.Add(cmb4)
                 Dim cmb As New DataGridViewImageColumn
                 cmb.DisplayIndex = 10
                 cmb.HeaderText = "View Training"
@@ -93,7 +109,7 @@ Public Class Form1
                 cmb.Name = "ViewTraining"
                 Dim cmb2 As New DataGridViewImageColumn
                 cmb2.HeaderText = "Hide Staff Member"
-                cmb2.Image = My.Resources.training
+                cmb2.Image = My.Resources.hide
                 cmb2.ImageLayout = DataGridViewImageCellLayout.Zoom
                 ctl.columns.add(cmb2)
                 cmb2.Name = "HideStaff"
@@ -120,6 +136,40 @@ Public Class Form1
                 cmb2.ImageLayout = DataGridViewImageCellLayout.Zoom
                 cmb2.HeaderText = "Attendees"
                 ctl.columns.add(cmb2)
+
+            Case "ReportViewer1"
+
+                Dim SiteCrit As String = "'%' OR Site IS NULL"
+                Dim MonthCrit As Date = Date.Now
+                Dim ContCrit As String = "'%' OR Contract IS NULL"
+                Dim RoleCrit As String = "'%' OR Role IS NULL "
+                Dim MonthAdd As Integer = 0
+
+                If Me.ComboBox2.SelectedValue <> "" Then SiteCrit = "'" & Me.ComboBox2.SelectedValue & "'"
+                If Me.ComboBox1.SelectedItem <> "" Then
+                    MonthAdd = Me.ComboBox1.SelectedItem
+                    MonthCrit = DateAdd(DateInterval.Month, MonthAdd, MonthCrit)
+                End If
+                If Me.ComboBox3.SelectedValue <> "" Then ContCrit = "'" & Me.ComboBox3.SelectedValue & "'"
+                If Me.ComboBox4.SelectedValue <> "" Then RoleCrit = "'" & Me.ComboBox4.SelectedValue & "'"
+
+                Dim SQLCode As String = _
+                "SELECT FullName, Expires, TrainingName FROM ExpiredTraining " & _
+                "WHERE Site LIKE " & SiteCrit & " AND " & _
+                "Contract LIKE " & ContCrit & " AND " & _
+                "Role LIKE " & RoleCrit & " AND " & _
+                "Expires <=" & OverClass.SQLDate(MonthCrit)
+
+                MsgBox(SQLCode)
+
+                Me.ReportViewer1.Visible = True
+                Me.ReportViewer1.LocalReport.DataSources.Clear()
+                Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "TrainingDB.ExpiredTraining.rdlc"
+                Me.ReportViewer1.LocalReport.DataSources.Add(New ReportDataSource("ReportDataSet", _
+                                                          OverClass.TempDataTable(SQLCode)))
+                Me.ReportViewer1.RefreshReport()
+
+
         End Select
 
     End Sub
@@ -161,7 +211,7 @@ Public Class Form1
                                                                   "WHERE ID=" & CourseID), "Dater")
                 OverClass.CurrentDataSet.Tables(0).Columns("CourseID").DefaultValue = CourseID
                 Dim cmb As New DataGridViewComboBoxColumn()
-                cmb.DataSource = OverClass.TempDataTable("SELECT ID, FName & ' ' & SName As FullName FROM STAFF ORDER BY FName & ' ' & SName ASC")
+                cmb.DataSource = OverClass.TempDataTable("SELECT ID, FName & ' ' & SName As FullName FROM STAFF WHERE Hidden=False ORDER BY FName & ' ' & SName ASC")
                 cmb.DataPropertyName = OverClass.CurrentDataSet.Tables(0).Columns("StaffID").ToString
                 cmb.ValueMember = "ID"
                 cmb.DisplayMember = "FullName"
@@ -181,10 +231,16 @@ Public Class Form1
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
 
-        If IsDBNull(sender.item("ID", e.RowIndex).value) Then Exit Sub
+
 
 
         If e.ColumnIndex = sender.columns("ViewTraining").index Then
+
+            If IsDBNull(sender.item("ID", e.RowIndex).value) Then
+                MsgBox("Please save record first")
+                Exit Sub
+            End If
+
 
             Dim Dt As DataTable = OverClass.TempDataTable("SELECT CourseDate, TrainingName, DateAdd('M',iif(isnull(ValidLength),120,ValidLength),CourseDate) As Expiry " & _
                                                           "FROM ((CourseAttendees a INNER JOIN TrainingCourse b " & _
@@ -208,7 +264,22 @@ Public Class Form1
 
         If e.ColumnIndex = sender.columns("HideStaff").index Then
 
+            If IsDBNull(sender.item("ID", e.RowIndex).value) Then
+                MsgBox("Please save record first")
+                Exit Sub
+            End If
+
+            If MsgBox("Are you sure you want to hide this staff member?" & vbNewLine & _
+                      "Please save to commit changes", vbYesNo) = MsgBoxResult.Yes Then
+
+                sender.item("Hidden", e.RowIndex).value = True
+                sender.CurrentCell = Nothing
+                sender.Rows(e.RowIndex).Visible = False
+
+            End If
+
 
         End If
     End Sub
+
 End Class

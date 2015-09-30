@@ -2,8 +2,6 @@
 
     Public Sub GenericCombo(sender As Object, e As EventArgs)
 
-        If sender.SelectedValue.ToString = vbNullString Then Exit Sub
-
         If OverClass.UnloadData() = True Then Exit Sub
         OverClass.ResetCollection()
         Call SubCombo(sender)
@@ -11,15 +9,16 @@
 
     End Sub
 
-    Private Sub SubCombo(sender As ComboBox)
+    Public Sub SubCombo(sender As ComboBox)
 
         Select Case sender.Name.ToString
 
-            'Case "ComboBox4"
-            'StartCombo(Form1.ComboBox3)
-
-            Case Else
-                ComboRefreshData(sender)
+            Case "ComboBox1", "ComboBox2", "ComboBox3", "ComboBox4"
+                Form1.Specifics(Form1.ReportViewer1)
+                StartCombo(Form1.ComboBox1)
+                StartCombo(Form1.ComboBox2)
+                StartCombo(Form1.ComboBox3)
+                StartCombo(Form1.ComboBox4)
 
         End Select
 
@@ -29,38 +28,91 @@
 
         Select Case ctl.Name.ToString()
 
+            Case "ComboBox2"
 
-            'Case "ComboBox18"
-            '   If IsNothing(Form1.ComboBox17.SelectedValue) Then Exit Sub
-            '   ctl.DataSource = OverClass.TempDataTable("SELECT CohortID, " & _
-            '                                                  "CohortName FROM Cohort WHERE StudyID=" _
-            '                                                  & Form1.ComboBox17.SelectedValue.ToString & _
-            '                                                  " AND Generated=True " & _
-            '                                                  " ORDER BY CohortName ASC")
-            '   ctl.ValueMember = "CohortID"
-            '   ctl.DisplayMember = "CohortName"
+                If ctl.SelectedValue <> "" Then Exit Sub
+                Dim Fielder As String = "Site"
+
+                Dim dt As DataTable = OverClass.TempDataTable( _
+                "SELECT Site FROM Staff GROUP BY Site")
+
+                Dim QueryResult = ((From a In dt.AsEnumerable() _
+                                    Select "").Union _
+                                    (From a In dt.AsEnumerable()
+                                     Where a.Field(Of String)(Fielder) <> ""
+                                     Where a.Field(Of String)(Fielder) <> Nothing
+                                        Where a.Field(Of String)(Fielder) <> " "
+                                     Order By a.Field(Of String)(Fielder) Ascending
+                                    Select a.Field(Of String)(Fielder))).Distinct()
+
+                Dim dt2 As New DataTable
+                dt2.Columns.Add(Fielder)
+                For Each row In QueryResult
+                    dt2.Rows.Add(row)
+                Next
+
+                ctl.DataSource = dt2
+                ctl.DisplayMember = Fielder
+                ctl.ValueMember = Fielder
+
+            Case "ComboBox3"
+
+                If ctl.SelectedValue <> "" Then Exit Sub
+                Dim Fielder As String = "Role"
+
+                Dim dt As DataTable = OverClass.TempDataTable( _
+                "SELECT Role FROM Staff GROUP BY Role")
+
+                Dim QueryResult = ((From a In dt.AsEnumerable() _
+                                    Select "").Union _
+                                    (From a In dt.AsEnumerable()
+                                     Where a.Field(Of String)(Fielder) <> ""
+                                     Where a.Field(Of String)(Fielder) <> Nothing
+                                        Where a.Field(Of String)(Fielder) <> " "
+                                     Order By a.Field(Of String)(Fielder) Ascending
+                                    Select a.Field(Of String)(Fielder))).Distinct()
+
+                Dim dt2 As New DataTable
+                dt2.Columns.Add(Fielder)
+                For Each row In QueryResult
+                    dt2.Rows.Add(row)
+                Next
+
+                ctl.DataSource = dt2
+                ctl.DisplayMember = Fielder
+                ctl.ValueMember = Fielder
+
+            Case "ComboBox4"
+
+                If ctl.SelectedValue <> "" Then Exit Sub
+                Dim Fielder As String = "Contract"
+
+                Dim dt As DataTable = OverClass.TempDataTable( _
+                "SELECT Contract FROM Staff GROUP BY Contract")
+
+                Dim QueryResult = ((From a In dt.AsEnumerable() _
+                                    Select "").Union _
+                                    (From a In dt.AsEnumerable()
+                                     Where a.Field(Of String)(Fielder) <> ""
+                                     Where a.Field(Of String)(Fielder) <> Nothing
+                                        Where a.Field(Of String)(Fielder) <> " "
+                                     Order By a.Field(Of String)(Fielder) Ascending
+                                    Select a.Field(Of String)(Fielder))).Distinct()
+
+                Dim dt2 As New DataTable
+                dt2.Columns.Add(Fielder)
+                For Each row In QueryResult
+                    dt2.Rows.Add(row)
+                Next
+
+                ctl.DataSource = dt2
+                ctl.DisplayMember = Fielder
+                ctl.ValueMember = Fielder
+
 
         End Select
 
-        ComboRefreshData(ctl)
-
     End Sub
 
-    Public Sub ComboRefreshData(sender As ComboBox)
-
-        Dim Grid As DataGridView = Nothing
-
-        Select Case sender.Name.ToString()
-
-            'Case "ComboBox22"
-            '   Grid = Form1.DataGridView13
-
-
-        End Select
-
-
-        'If Not IsNothing(Grid) Then Call Form1.Specifics(Grid)
-
-    End Sub
 
 End Module
