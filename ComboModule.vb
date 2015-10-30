@@ -28,6 +28,22 @@
 
         Select Case ctl.Name.ToString()
 
+            Case "ComboBox5"
+
+                If ctl.SelectedValue <> "" Then Exit Sub
+
+                Dim dt As DataTable = OverClass.TempDataTable("SELECT DISTINCT * FROM ( " & _
+                                                              "SELECT '' AS TrainingName " & _
+                                                              "UNION ALL " & _
+                                                              "SELECT TrainingName " & _
+                                                                "FROM ExpiredTraining) ORDER BY TrainingName ASC")
+
+
+
+                ctl.DataSource = dt
+                ctl.DisplayMember = "TrainingName"
+                ctl.ValueMember = "TrainingName"
+
             Case "ComboBox2"
 
                 If ctl.SelectedValue <> "" Then Exit Sub

@@ -143,6 +143,7 @@ Public Class Form1
                 Dim MonthCrit As Date = Date.Now
                 Dim ContCrit As String = "'%' OR Contract IS NULL"
                 Dim RoleCrit As String = "'%' OR Role IS NULL "
+                Dim CourseCrit As String = "'%'"
                 Dim MonthAdd As Integer = 0
 
                 If Me.ComboBox2.SelectedValue <> "" Then SiteCrit = "'" & Me.ComboBox2.SelectedValue & "'"
@@ -152,15 +153,15 @@ Public Class Form1
                 End If
                 If Me.ComboBox3.SelectedValue <> "" Then ContCrit = "'" & Me.ComboBox3.SelectedValue & "'"
                 If Me.ComboBox4.SelectedValue <> "" Then RoleCrit = "'" & Me.ComboBox4.SelectedValue & "'"
+                If Me.ComboBox5.SelectedValue <> "" Then CourseCrit = "'" & Me.ComboBox5.SelectedValue & "'"
 
                 Dim SQLCode As String = _
                 "SELECT FullName, Expires, TrainingName FROM ExpiredTraining " & _
                 "WHERE Site LIKE " & SiteCrit & " AND " & _
                 "Contract LIKE " & ContCrit & " AND " & _
                 "Role LIKE " & RoleCrit & " AND " & _
+                "TrainingName LIKE " & CourseCrit & " AND " & _
                 "Expires <=" & OverClass.SQLDate(MonthCrit)
-
-                MsgBox(SQLCode)
 
                 Me.ReportViewer1.Visible = True
                 Me.ReportViewer1.LocalReport.DataSources.Clear()
