@@ -23,3 +23,15 @@ C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\TemplateDB.xml
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\TrainingDB.StaffTraining.resources
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\RdlCompile.cache
 C:\OK\Databases\Backup\TrainingDB\TrainingDB\obj\Debug\RdlCompile.compiled
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+C:\OK\Databases\Backup\TrainingDB\TrainingDB\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll

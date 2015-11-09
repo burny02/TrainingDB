@@ -1,8 +1,8 @@
 ﻿Imports TemplateDB
 Module Variables
     Public OverClass As OverClass
-    Private Const TablePath As String = "M:\VOLUNTEER SCREENING SERVICES\DavidBurnside\Training\Backend.accdb"
-    Private Const PWord As String = "Crypto*Dave02"
+    Private Const TablePath As String = "M:\VOLUNTEER SCREENING SERVICES\Systems\Training\Backend.accdb"
+    Private Const PWord As String = "RetroRetro*1"
     Private Const Connect2 As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & TablePath & ";Jet OLEDB:Database Password=" & PWord
     Private Const UserTable As String = "[Users]"
     Private Const UserField As String = "Username"
