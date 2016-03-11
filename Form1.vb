@@ -66,7 +66,8 @@ Public Class Form1
                 StartCombo(Me.ComboBox2)
                 StartCombo(Me.ComboBox3)
                 StartCombo(Me.ComboBox4)
-                
+                StartCombo(Me.ComboBox5)
+
         End Select
 
 
@@ -139,10 +140,10 @@ Public Class Form1
 
             Case "ReportViewer1"
 
-                Dim SiteCrit As String = "'%' OR Site IS NULL"
+                Dim SiteCrit As String = "'%' OR Site IS NULL OR Site='' "
                 Dim MonthCrit As Date = Date.Now
-                Dim ContCrit As String = "'%' OR Contract IS NULL"
-                Dim RoleCrit As String = "'%' OR Role IS NULL "
+                Dim ContCrit As String = "'%' OR Contract IS NULL OR Contract='' "
+                Dim RoleCrit As String = "'%' OR Role IS NULL Or Role='' "
                 Dim CourseCrit As String = "'%'"
                 Dim MonthAdd As Integer = 0
 
@@ -155,13 +156,13 @@ Public Class Form1
                 If Me.ComboBox4.SelectedValue <> "" Then RoleCrit = "'" & Me.ComboBox4.SelectedValue & "'"
                 If Me.ComboBox5.SelectedValue <> "" Then CourseCrit = "'" & Me.ComboBox5.SelectedValue & "'"
 
-                Dim SQLCode As String = _
-                "SELECT FullName, Expires, TrainingName FROM ExpiredTraining " & _
-                "WHERE Site LIKE " & SiteCrit & " AND " & _
-                "Contract LIKE " & ContCrit & " AND " & _
-                "Role LIKE " & RoleCrit & " AND " & _
-                "TrainingName LIKE " & CourseCrit & " AND " & _
-                "Expires <=" & OverClass.SQLDate(MonthCrit)
+                Dim SQLCode As String =
+                "SELECT FullName, Expires, TrainingName FROM ExpiredTraining " &
+                "WHERE (Site LIKE " & SiteCrit & ") AND " &
+                "(Contract LIKE " & ContCrit & ") AND " &
+                "(Role LIKE " & RoleCrit & ") AND " &
+                "(TrainingName LIKE " & CourseCrit & ") AND " &
+                "(Expires <=" & OverClass.SQLDate(MonthCrit) & ")"
 
                 Me.ReportViewer1.Visible = True
                 Me.ReportViewer1.LocalReport.DataSources.Clear()
@@ -243,10 +244,10 @@ Public Class Form1
             End If
 
 
-            Dim Dt As DataTable = OverClass.TempDataTable("SELECT CourseDate, TrainingName, DateAdd('M',iif(isnull(ValidLength),120,ValidLength),CourseDate) As Expiry " & _
-                                                          "FROM ((CourseAttendees a INNER JOIN TrainingCourse b " & _
-                                                            "ON a.CourseID=b.ID) INNER JOIN TrainType c ON b.TypeID=c.ID) " & _
-                                                            "WHERE StaffID=" & sender.item("ID", e.RowIndex).value & _
+            Dim Dt As DataTable = OverClass.TempDataTable("SELECT CourseDate, TrainingName, DateAdd('M',iif(isnull(ValidLength),120,ValidLength),CourseDate) As Expiry " &
+                                                          "FROM ((CourseAttendees a INNER JOIN TrainingCourse b " &
+                                                            "ON a.CourseID=b.ID) INNER JOIN TrainType c ON b.TypeID=c.ID) " &
+                                                            "WHERE StaffID=" & sender.item("ID", e.RowIndex).value &
                                                             " ORDER BY CourseDate ASC")
             If Dt.Rows.Count = 0 Then
                 MsgBox("No training found")
@@ -270,7 +271,7 @@ Public Class Form1
                 Exit Sub
             End If
 
-            If MsgBox("Are you sure you want to hide this staff member?" & vbNewLine & _
+            If MsgBox("Are you sure you want to hide this staff member?" & vbNewLine &
                       "Please save to commit changes", vbYesNo) = MsgBoxResult.Yes Then
 
                 sender.item("Hidden", e.RowIndex).value = True

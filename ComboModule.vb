@@ -32,10 +32,10 @@
 
                 If ctl.SelectedValue <> "" Then Exit Sub
 
-                Dim dt As DataTable = OverClass.TempDataTable("SELECT DISTINCT * FROM ( " & _
-                                                              "SELECT '' AS TrainingName " & _
-                                                              "UNION ALL " & _
-                                                              "SELECT TrainingName " & _
+                Dim dt As DataTable = OverClass.TempDataTable("SELECT DISTINCT * FROM ( " &
+                                                              "SELECT '' AS TrainingName FROM ExpiredTraining " &
+                                                              "UNION ALL " &
+                                                              "SELECT TrainingName " &
                                                                 "FROM ExpiredTraining) ORDER BY TrainingName ASC")
 
 

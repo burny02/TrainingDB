@@ -7,7 +7,7 @@ Module Variables
     Private Const UserTable As String = "[Users]"
     Private Const UserField As String = "Username"
     Private Const LockTable As String = "[Locker]"
-    Private Const ActiveUsersTable As String = "[ActiveUsers]"
+    Private Const AuditTable As String = "[Audit]"
     Private Contact As String = "Skye Firminger"
     Public Const SolutionName As String = "Training Tool"
 
@@ -15,12 +15,12 @@ Module Variables
     Public Sub StartUpCentral()
 
         OverClass = New OverClass
-        OverClass.SetPrivate(UserTable, _
-                           UserField, _
-                           LockTable, _
-                           Contact, _
+        OverClass.SetPrivate(UserTable,
+                           UserField,
+                           LockTable,
+                           Contact,
                            Connect2,
-                           ActiveUsersTable)
+                           AuditTable)
 
         OverClass.LockCheck()
 
